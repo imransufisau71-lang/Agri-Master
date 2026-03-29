@@ -4,8 +4,8 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" })
   }
 
-  const BOT_TOKEN = "8724116418:AAF4YTsrynt4dosRoW4ASUpA2ClcnrprFbo"
-  const CHAT_ID = "8660626313"
+  const BOT_TOKEN = "8633777403:AAE7y-7kBSY5_9oQ8XXWZWJJCopTG_oPb7Y"
+  const CHAT_ID = "8633777403"
 
   const data = req.body
 
