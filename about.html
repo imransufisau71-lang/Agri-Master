@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>লেখক পরিচিতি — এগ্রি মাস্টার</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+      --soil: #0d2040;
+      --earth: #1a3a6b;
+      --wheat: #2e8b3c;
+      --straw: #8dc63f;
+      --sage: #5ab4e5;
+      --fog: #eef6fb;
+      --ink: #071528;
+      --cream: #f0f8ff;
+      --navy: #1a3a6b;
+      --green: #2e8b3c;
+      --lime: #8dc63f;
+      --sky: #5ab4e5;
+      --gold: #f5c518;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Tiro Bangla', serif; background: var(--cream); color: var(--soil); overflow-x: hidden; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 3rem; height: 70px; display: flex; align-items: center; justify-content: space-between; background: var(--ink); box-shadow: 0 2px 20px rgba(0,0,0,0.25); }
+    .nav-brand { font-family: 'Tiro Bangla', serif; font-size: 1.1rem; font-style: italic; color: var(--cream); text-decoration: none; z-index: 1001; }
+    .nav-links { display: flex; align-items: center; gap: 2.2rem; list-style: none; }
+    .nav-links a { font-family: 'Tiro Bangla', serif; font-size: 0.85rem; font-weight: 500; color: var(--cream); text-decoration: none; position: relative; padding-bottom: 3px; opacity: 0.85; transition: opacity 0.3s; }
+    .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.35s cubic-bezier(0.4,0,0.2,1); }
+    .nav-links a:hover { opacity: 1; }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { opacity: 1; }
+    .nav-links a.active::after { width: 100%; }
+    .nav-buy-btn { background: #f5c518 !important; color: var(--ink) !important; padding: 0.45rem 1.2rem !important; opacity: 1 !important; border-radius: 2px; }
+    .nav-buy-btn::after { display: none !important; }
+    .nav-hamburger { display: none; flex-direction: column; justify-content: center; align-items: center; width: 40px; height: 40px; background: none; border: none; cursor: pointer; z-index: 1001; gap: 5px; }
+    .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: var(--cream); transition: transform 0.35s ease, opacity 0.25s ease; transform-origin: center; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .nav-drawer { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--ink); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 2.2rem; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
+    .nav-drawer.open { opacity: 1; pointer-events: all; }
+    .nav-drawer a { font-family: 'Tiro Bangla', serif; font-size: 1.8rem; font-weight: 700; color: var(--straw); text-decoration: none; position: relative; padding-bottom: 4px; transition: color 0.3s; }
+    .nav-drawer a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.35s cubic-bezier(0.4,0,0.2,1); }
+    .nav-drawer a:hover { color: var(--wheat); }
+    .nav-drawer a:hover::after { width: 100%; }
+    .drawer-buy { color: var(--wheat) !important; }
+
+    .page-hero { min-height: 50vh; background: var(--ink); display: flex; align-items: flex-end; padding: 0 8vw 5rem; position: relative; overflow: hidden; }
+    .page-hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 75% 50%, rgba(200,169,110,0.1) 0%, transparent 55%), radial-gradient(ellipse at 20% 30%, rgba(122,140,110,0.08) 0%, transparent 45%); }
+    .page-hero-content { position: relative; z-index: 2; }
+    .page-hero-label { font-family: 'Tiro Bangla', serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--wheat); margin-bottom: 1.2rem; opacity: 0.85; }
+    .page-hero-title { font-family: 'Tiro Bangla', serif; font-size: clamp(2.8rem, 6.5vw, 6.5rem); font-weight: 900; color: var(--straw); line-height: 1; margin-bottom: 1.2rem; }
+    .page-hero-title em { font-style: italic; color: var(--wheat); }
+    .page-hero-sub { font-family: 'Tiro Bangla', serif; font-size: 1.05rem; color: rgba(232,213,163,0.6); max-width: 520px; line-height: 1.7; }
+
+    .content-section { padding: 6rem 8vw; }
+    .section-label { font-family: 'Tiro Bangla', serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sage); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem; }
+    .section-label::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--sage); }
+
+    h2 { font-family: 'Tiro Bangla', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; color: var(--soil); margin-bottom: 1.5rem; line-height: 1.2; }
+    h2 em { font-style: italic; color: var(--earth); }
+    p { font-size: 1rem; line-height: 1.9; color: var(--earth); margin-bottom: 1.2rem; }
+
+    .author-section { display: grid; grid-template-columns: 1fr 1.4fr; gap: 6rem; align-items: start; }
+    .author-portrait { position: sticky; top: 100px; }
+    .portrait-frame { width: 100%; aspect-ratio: 3/4; background: linear-gradient(145deg, var(--earth) 0%, var(--soil) 100%); position: relative; overflow: hidden; max-width: 360px; }
+    .portrait-frame::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 55%, rgba(43,29,14,0.8)); z-index: 1; }
+    .portrait-name { position: absolute; bottom: 1.5rem; left: 1.5rem; z-index: 2; }
+    .portrait-name h3 { font-family: 'Tiro Bangla', serif; font-size: 1.1rem; font-weight: 700; color: var(--straw); margin-bottom: 0.2rem; }
+    .portrait-name p { font-family: 'Tiro Bangla', serif; font-size: 0.78rem; color: var(--wheat); opacity: 0.85; margin: 0; }
+
+    .author-bio h2 { margin-bottom: 0.5rem; }
+    .author-bio .subtitle { font-family: 'Tiro Bangla', serif; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; color: var(--wheat); margin-bottom: 2.5rem; opacity: 0.9; }
+
+    .works-list { margin-top: 2.5rem; }
+    .work-item { border-top: 1px solid rgba(74,53,32,0.15); padding: 1.5rem 0; display: flex; gap: 2rem; align-items: start; }
+    .work-year { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--wheat); padding-top: 0.25rem; min-width: 3.5rem; }
+    .work-title { font-family: 'Tiro Bangla', serif; font-size: 1rem; font-weight: 700; color: var(--soil); margin-bottom: 0.3rem; }
+    .work-desc { font-size: 0.88rem; color: var(--earth); margin: 0; line-height: 1.65; }
+
+    .contact-section { background: var(--soil); padding: 6rem 8vw; }
+    .contact-section .section-label { color: rgba(200,169,110,0.6); }
+    .contact-section .section-label::after { background: rgba(200,169,110,0.3); }
+    .contact-section h2 { color: var(--straw); }
+    .contact-section h2 em { color: var(--wheat); }
+    .contact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 3rem; }
+    .contact-card { border: 1px solid rgba(200,169,110,0.2); padding: 2.5rem 2rem; }
+    .contact-card-title { font-family: 'Tiro Bangla', serif; font-size: 1rem; font-weight: 700; color: var(--straw); margin-bottom: 0.8rem; }
+    .contact-card-value { font-family: 'Tiro Bangla', serif; font-size: 0.9rem; color: rgba(232,213,163,0.65); line-height: 1.7; }
+    .contact-card-value a { color: var(--wheat); text-decoration: none; transition: opacity 0.3s; }
+    .contact-card-value a:hover { opacity: 0.8; }
+    .contact-card.cta-card { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 1.2rem; background: rgba(200,169,110,0.06); }
+    .contact-card.cta-card p { font-family: 'Tiro Bangla', serif; font-style: italic; font-size: 1.05rem; color: var(--straw); line-height: 1.6; margin: 0; }
+    .cta-btn { display: inline-block; background: var(--gold); color: var(--ink); padding: 0.85rem 2rem; font-family: 'Tiro Bangla', serif; font-size: 0.88rem; font-weight: 600; text-decoration: none; transition: background 0.3s; }
+    .cta-btn:hover { background: #e8b800; }
+
+    footer { background: var(--ink); padding: 3.5rem 8vw 2rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 2rem; }
+    .footer-brand { font-family: 'Tiro Bangla', serif; font-size: 1.5rem; color: var(--straw); }
+    .footer-brand em { color: var(--wheat); }
+    .footer-contact { display: flex; flex-direction: column; gap: 0.65rem; margin-top: 1rem; }
+    .footer-contact-item { display: flex; align-items: center; gap: 0.65rem; font-family: 'Tiro Bangla', serif; font-size: 0.85rem; color: rgba(200,169,110,0.75); text-decoration: none; transition: color 0.3s; }
+    .footer-contact-item:hover { color: var(--wheat); }
+    .footer-copy { font-family: 'Tiro Bangla', serif; font-size: 0.78rem; color: rgba(200,169,110,0.3); text-align: right; line-height: 1.9; }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media(max-width: 768px) {
+      nav { padding: 0 1.2rem; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-drawer { display: flex; }
+      .page-hero { padding: 0 6vw 3.5rem; }
+      .content-section { padding: 4.5rem 6vw; }
+      .author-section { grid-template-columns: 1fr; gap: 3rem; }
+      .author-portrait { position: static; }
+      .contact-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; align-items: flex-start; padding: 3rem 6vw 2rem; }
+      .footer-copy { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav-drawer" id="navDrawer">
+    <a href="read.html" onclick="closeDrawer()">একটু পড়ুন</a>
+    <a href="about.html" onclick="closeDrawer()">লেখক পরিচিতি</a>
+    <a href="checkout.html" onclick="closeDrawer()" class="drawer-buy">বই কিনুন</a>
+  </div>
+
+  <nav id="navbar">
+    <a href="index.html" class="nav-brand">এগ্রি মাস্টার</a>
+    <ul class="nav-links">
+      <li><a href="read.html">একটু পড়ুন</a></li>
+      <li><a href="about.html" class="active">লেখক পরিচিতি</a></li>
+      <li><a href="checkout.html" class="nav-buy-btn">বই কিনুন</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="মেনু">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-content">
+      <p class="page-hero-label">লেখক পরিচিতি</p>
+      <h1 class="page-hero-title">কৃষিবিদ মো:<br><em>ইমরান হোসেন</em></h1>
+      <p class="page-hero-sub">প্রভাষক ও বিভাগীয় প্রধান, কৃষি বিভাগ, আদমজী ক্যান্টনমেন্ট কলেজ — এবং এগ্রি মাস্টারের রচয়িতা।</p>
+    </div>
+  </div>
+
+  <section class="content-section">
+    <div class="author-section">
+      <div class="author-portrait reveal">
+        <div class="portrait-frame">
+          <img src="Author.jpeg" alt="কৃষিবিদ মো: ইমরান হোসেন" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;"/>
+          <div class="portrait-name">
+            <h3>কৃষিবিদ মো: ইমরান হোসেন</h3>
+            <p>আদমজী ক্যান্টনমেন্ট কলেজ</p>
+          </div>
+        </div>
+      </div>
+      <div class="author-bio reveal">
+        <p class="section-label">পরিচয়</p>
+        <h2>যিনি শ্রেণিকক্ষকে <em>পরীক্ষার কৌশলে</em> রূপান্তর করেন</h2>
+        <div class="subtitle">প্রভাষক ও বিভাগীয় প্রধান, কৃষি বিভাগ · আদমজী ক্যান্টনমেন্ট কলেজ</div>
+        <p>কৃষিবিদ মো: ইমরান হোসেন আদমজী ক্যান্টনমেন্ট কলেজের কৃষি বিভাগের বিভাগীয় প্রধান ও প্রভাষক হিসেবে দীর্ঘদিন ধরে কর্মরত আছেন। কৃষি বিজ্ঞানের প্রতি তাঁর গভীর আগ্রহ এবং শিক্ষার্থীদের প্রতি আন্তরিক নিষ্ঠা তাঁকে কলেজ ও প্রতিযোগিতামূলক পরীক্ষার্থীদের কাছে অত্যন্ত বিশ্বস্ত করে তুলেছে।</p>
+        <p>তিনি বিশেষভাবে এনটিআরসিএ, বিসিএস (কৃষি), স্কুল ও কলেজ শিক্ষক নিয়োগ পরীক্ষার প্রার্থীদের প্রস্তুতিতে সহায়তা করে আসছেন। তাঁর পাঠদান পদ্ধতি সম্পূর্ণ পরীক্ষামুখী — MCQ, লিখিত ও ভাইভা — তিনটি ধরনেই তিনি শিক্ষার্থীদের আত্মবিশ্বাসী করে তোলেন।</p>
+        <p><em>এগ্রি মাস্টার</em> হলো সেই দীর্ঘ পাঠদান অভিজ্ঞতার সংকলন — একটি পূর্ণাঙ্গ গাইড যা প্রতিটি কৃষি পরীক্ষার্থীর নির্ভরযোগ্য সঙ্গী।</p>
+
+        <div class="works-list">
+          <p class="section-label" style="margin-top: 2.5rem;">বইয়ের বিশেষত্ব</p>
+          <div class="work-item reveal">
+            <div class="work-year">✦ ০১</div>
+            <div>
+              <div class="work-title">সম্পূর্ণ কৃষি সিলেবাস কভারেজ</div>
+              <p class="work-desc">অফিশিয়াল সিলেবাসের প্রতিটি টপিক গভীরভাবে আলোচনা করা হয়েছে — কোনো অধ্যায় বাদ নেই।</p>
+            </div>
+          </div>
+          <div class="work-item reveal">
+            <div class="work-year">✦ ০২</div>
+            <div>
+              <div class="work-title">MCQ, লিখিত ও ভাইভা প্রস্তুতি</div>
+              <p class="work-desc">তিনটি পরীক্ষার ধরনের জন্য আলাদা কৌশল ও নমুনা প্রশ্নোত্তর — একটি বইয়েই সব।</p>
+            </div>
+          </div>
+          <div class="work-item reveal">
+            <div class="work-year">✦ ০৩</div>
+            <div>
+              <div class="work-title">পূর্ববর্তী প্রশ্ন বিশ্লেষণ</div>
+              <p class="work-desc">বিগত বছরের প্রশ্নপত্র বিশ্লেষণ করে গুরুত্বপূর্ণ টপিক চিহ্নিত করা হয়েছে।</p>
+            </div>
+          </div>
+          <div class="work-item reveal">
+            <div class="work-year">✦ ০৪</div>
+            <div>
+              <div class="work-title">সংক্ষিপ্ত নোট ও স্মার্ট টেকনিক</div>
+              <p class="work-desc">দ্রুত মুখস্থ করার কৌশল, মেমোনিক ও সারসংক্ষেপ নোট প্রতিটি অধ্যায়ে।</p>
+            </div>
+          </div>
+          <div class="work-item reveal">
+            <div class="work-year">✦ ০৫</div>
+            <div>
+              <div class="work-title">অনুশীলনের জন্য মডেল টেস্ট</div>
+              <p class="work-desc">পূর্ণাঙ্গ মডেল টেস্ট যা আসল পরীক্ষার পরিবেশ অনুকরণ করে — আত্মবিশ্বাস তৈরির জন্য আদর্শ।</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <p class="section-label reveal">যোগাযোগ করুন</p>
+    <h2 class="reveal">লেখকের সাথে <em>সরাসরি</em> যোগাযোগ</h2>
+    <div class="contact-grid">
+      <div class="contact-card reveal">
+        <div class="contact-card-title">📞 ফোন / হোয়াটসঅ্যাপ</div>
+        <div class="contact-card-value">
+          <a href="tel:01737940688">০১৭৩৭৯৪০৬৮৮</a><br>
+          <span style="font-size:0.82rem;opacity:0.7;">যেকোনো প্রশ্নের জন্য কল করুন</span>
+        </div>
+      </div>
+      <div class="contact-card reveal">
+        <div class="contact-card-title">📘 ফেসবুক গ্রুপ</div>
+        <div class="contact-card-value">
+          <a href="https://facebook.com/groups/426078837022808/" target="_blank" rel="noopener">আমাদের স্টাডি গ্রুপে যোগ দিন →</a><br>
+          <span style="font-size:0.82rem;opacity:0.7;">নোট, আলোচনা ও আপডেটের জন্য</span>
+        </div>
+      </div>
+      <div class="contact-card reveal">
+        <div class="contact-card-title">🏫 প্রতিষ্ঠান</div>
+        <div class="contact-card-value">
+          আদমজী ক্যান্টনমেন্ট কলেজ<br>কৃষি বিভাগ, ঢাকা
+        </div>
+      </div>
+      <div class="contact-card cta-card reveal">
+        <p>"সঠিক বই, সঠিক প্রস্তুতি — সাফল্য নিশ্চিত।"</p>
+        <a href="checkout.html" class="cta-btn">এখনই বই অর্ডার করুন</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>
+      <div class="footer-brand">এগ্রি <em>মাস্টার</em></div>
+      <div class="footer-contact">
+        <a href="tel:01737940688" class="footer-contact-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.5 2 2 0 0 1 3.6 1.37h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+          ০১৭৩৭৯৪০৬৮৮
+        </a>
+        <a href="https://facebook.com/groups/426078837022808/" target="_blank" rel="noopener" class="footer-contact-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          ফেসবুক গ্রুপে যোগ দিন
+        </a>
+      </div>
+    </div>
+    <div class="footer-copy">© ২০২৫ কৃষিবিদ মো: ইমরান হোসেন<br>আদমজী ক্যান্টনমেন্ট কলেজ</div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const drawer = document.getElementById('navDrawer');
+    function closeDrawer() { hamburger.classList.remove('open'); drawer.classList.remove('open'); document.body.style.overflow = ''; }
+    hamburger.addEventListener('click', () => { const isOpen = hamburger.classList.toggle('open'); drawer.classList.toggle('open', isOpen); document.body.style.overflow = isOpen ? 'hidden' : ''; });
+    const revealEls = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: 0.1 });
+    revealEls.forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>
