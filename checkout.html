@@ -319,14 +319,14 @@
           </div>
 
           <!-- Courier selector — only shown for outside-Dhaka districts -->
-          <div class="form-group" id="courierGroup" style="display:none;">
+          <!-- <div class="form-group" id="courierGroup" style="display:none;">
             <label>কুরিয়ার সার্ভিস <span class="req">*</span></label>
             <select id="courierService">
               <option value="">কুরিয়ার বেছে নিন</option>
               <option value="সুন্দরবন কুরিয়ার সার্ভিস">সুন্দরবন কুরিয়ার সার্ভিস</option>
               <option value="অন্যান্য">অন্যান্য</option>
             </select>
-          </div>
+          </div> -->
 
           <div class="form-group">
             <label>বিশেষ নির্দেশনা <span style="opacity:0.5;font-size:0.72rem">(ঐচ্ছিক)</span></label>
@@ -475,15 +475,15 @@
         return;
       }
       if (DHAKA_INSIDE.includes(dist)) {
-        shippingCost = 70;
+        shippingCost = 60;
         document.getElementById('shippingTag').textContent = 'ঢাকার ভেতরে';
-        document.getElementById('shippingAmt').textContent = '৳ ' + toBanglaNum(70);
+        document.getElementById('shippingAmt').textContent = '৳ ' + toBanglaNum(60);
         courierGroup.style.display = 'none';
         document.getElementById('courierService').value = '';
       } else {
-        shippingCost = 120;
+        shippingCost = 100;
         document.getElementById('shippingTag').textContent = 'ঢাকার বাইরে';
-        document.getElementById('shippingAmt').textContent = '৳ ' + toBanglaNum(120);
+        document.getElementById('shippingAmt').textContent = '৳ ' + toBanglaNum(100);
         courierGroup.style.display = '';
       }
       recalc();
