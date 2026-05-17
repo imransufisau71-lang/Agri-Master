@@ -221,13 +221,94 @@
               <label>জেলা <span class="req">*</span></label>
               <select id="district">
                 <option value="">জেলা বেছে নিন</option>
-                <option>ঢাকা</option><option>চট্টগ্রাম</option><option>সিলেট</option>
-                <option>রাজশাহী</option><option>খুলনা</option><option>বরিশাল</option>
-                <option>রংপুর</option><option>ময়মনসিংহ</option><option>কুমিল্লা</option>
-                <option>নারায়ণগঞ্জ</option><option>গাজীপুর</option><option>মুন্সিগঞ্জ</option>
-                <option>নরসিংদী</option><option>টাঙ্গাইল</option><option>মানিকগঞ্জ</option>
-                <option>ফরিদপুর</option><option>যশোর</option><option>কুষ্টিয়া</option>
-                <option>বগুড়া</option><option>দিনাজপুর</option><option>অন্যান্য</option>
+                <!-- ঢাকা বিভাগ -->
+                <optgroup label="ঢাকা বিভাগ">
+                  <option>ঢাকা</option>
+                  <option>গাজীপুর</option>
+                  <option>নারায়ণগঞ্জ</option>
+                  <option>নরসিংদী</option>
+                  <option>মানিকগঞ্জ</option>
+                  <option>মুন্সিগঞ্জ</option>
+                  <option>কিশোরগঞ্জ</option>
+                  <option>টাঙ্গাইল</option>
+                  <option>ফরিদপুর</option>
+                  <option>গোপালগঞ্জ</option>
+                  <option>মাদারীপুর</option>
+                  <option>রাজবাড়ী</option>
+                  <option>শরীয়তপুর</option>
+                </optgroup>
+                <!-- চট্টগ্রাম বিভাগ -->
+                <optgroup label="চট্টগ্রাম বিভাগ">
+                  <option>চট্টগ্রাম</option>
+                  <option>কুমিল্লা</option>
+                  <option>কক্সবাজার</option>
+                  <option>ব্রাহ্মণবাড়িয়া</option>
+                  <option>চাঁদপুর</option>
+                  <option>ফেনী</option>
+                  <option>লক্ষ্মীপুর</option>
+                  <option>নোয়াখালী</option>
+                  <option>রাঙ্গামাটি</option>
+                  <option>বান্দরবান</option>
+                  <option>খাগড়াছড়ি</option>
+                </optgroup>
+                <!-- রাজশাহী বিভাগ -->
+                <optgroup label="রাজশাহী বিভাগ">
+                  <option>রাজশাহী</option>
+                  <option>বগুড়া</option>
+                  <option>চাঁপাইনবাবগঞ্জ</option>
+                  <option>জয়পুরহাট</option>
+                  <option>নওগাঁ</option>
+                  <option>নাটোর</option>
+                  <option>পাবনা</option>
+                  <option>সিরাজগঞ্জ</option>
+                </optgroup>
+                <!-- খুলনা বিভাগ -->
+                <optgroup label="খুলনা বিভাগ">
+                  <option>খুলনা</option>
+                  <option>বাগেরহাট</option>
+                  <option>চুয়াডাঙ্গা</option>
+                  <option>যশোর</option>
+                  <option>ঝিনাইদহ</option>
+                  <option>কুষ্টিয়া</option>
+                  <option>মাগুরা</option>
+                  <option>মেহেরপুর</option>
+                  <option>নড়াইল</option>
+                  <option>সাতক্ষীরা</option>
+                </optgroup>
+                <!-- বরিশাল বিভাগ -->
+                <optgroup label="বরিশাল বিভাগ">
+                  <option>বরিশাল</option>
+                  <option>বরগুনা</option>
+                  <option>ভোলা</option>
+                  <option>ঝালকাঠি</option>
+                  <option>পটুয়াখালী</option>
+                  <option>পিরোজপুর</option>
+                </optgroup>
+                <!-- সিলেট বিভাগ -->
+                <optgroup label="সিলেট বিভাগ">
+                  <option>সিলেট</option>
+                  <option>হবিগঞ্জ</option>
+                  <option>মৌলভীবাজার</option>
+                  <option>সুনামগঞ্জ</option>
+                </optgroup>
+                <!-- রংপুর বিভাগ -->
+                <optgroup label="রংপুর বিভাগ">
+                  <option>রংপুর</option>
+                  <option>দিনাজপুর</option>
+                  <option>গাইবান্ধা</option>
+                  <option>কুড়িগ্রাম</option>
+                  <option>লালমনিরহাট</option>
+                  <option>নীলফামারী</option>
+                  <option>পঞ্চগড়</option>
+                  <option>ঠাকুরগাঁও</option>
+                </optgroup>
+                <!-- ময়মনসিংহ বিভাগ -->
+                <optgroup label="ময়মনসিংহ বিভাগ">
+                  <option>ময়মনসিংহ</option>
+                  <option>জামালপুর</option>
+                  <option>নেত্রকোণা</option>
+                  <option>শেরপুর</option>
+                </optgroup>
               </select>
               <div class="field-error" id="district-error">অনুগ্রহ করে জেলা বেছে নিন।</div>
             </div>
@@ -235,6 +316,16 @@
               <label>উপজেলা / এলাকা</label>
               <input type="text" id="upazila" placeholder="যেমন: ধানমন্ডি, মিরপুর"/>
             </div>
+          </div>
+
+          <!-- Courier selector — only shown for outside-Dhaka districts -->
+          <div class="form-group" id="courierGroup" style="display:none;">
+            <label>কুরিয়ার সার্ভিস <span class="req">*</span></label>
+            <select id="courierService">
+              <option value="">কুরিয়ার বেছে নিন</option>
+              <option value="সুন্দরবন কুরিয়ার সার্ভিস">সুন্দরবন কুরিয়ার সার্ভিস</option>
+              <option value="অন্যান্য">অন্যান্য</option>
+            </select>
           </div>
 
           <div class="form-group">
@@ -263,12 +354,12 @@
                   <div class="product-meta">হার্ডকভার সংস্করণ</div>
                   <!-- unit price with strikethrough -->
                   <div class="product-price-row">
-                    <span class="price-original">৳ ৪৫০</span>
-                    <span class="price-sale">৳ ৩৯০</span>
+                    <span class="price-original">৳ ৫৫০</span>
+                    <span class="price-sale">৳ ৪৮০</span>
                     <span class="price-badge">সেল চলছে!</span>
                   </div>
                 </td>
-                <td id="lineTotalCell">৳ ৩৯০</td>
+                <td id="lineTotalCell">৳ ৪৮০</td>
               </tr>
             </tbody>
           </table>
@@ -286,7 +377,7 @@
           <div class="order-totals">
             <div class="totals-row">
               <span>সাবটোটাল <span id="qtyNote" style="opacity:0.55;font-size:0.8rem">(১ কপি)</span></span>
-              <span class="amount" id="subtotalAmt">৳ ৩৯০</span>
+              <span class="amount" id="subtotalAmt">৳ ৪৮০</span>
             </div>
             <div class="totals-row">
               <span>ডেলিভারি চার্জ <span class="shipping-tag" id="shippingTag">—</span></span>
@@ -294,7 +385,7 @@
             </div>
             <div class="totals-row total-final">
               <span>সর্বমোট</span>
-              <span class="amount" id="totalAmt">৳ ৩৯০</span>
+              <span class="amount" id="totalAmt">৳ ৪৮০</span>
             </div>
           </div>
           <button class="place-order-btn" id="placeOrderBtn" onclick="placeOrder()">
@@ -341,7 +432,7 @@
     hamburger.addEventListener('click', () => { const isOpen = hamburger.classList.toggle('open'); drawer.classList.toggle('open', isOpen); document.body.style.overflow = isOpen ? 'hidden' : ''; });
 
     const DHAKA_INSIDE = ['ঢাকা','নারায়ণগঞ্জ','গাজীপুর','নরসিংদী','মানিকগঞ্জ'];
-    const UNIT_PRICE = 390;   // sale price per copy
+    const UNIT_PRICE = 480;   // sale price per copy
     let shippingCost = 0;
     let qty = 1;
 
@@ -373,10 +464,13 @@
     // ── Shipping on district change
     document.getElementById('district').addEventListener('change', function() {
       const dist = this.value;
+      const courierGroup = document.getElementById('courierGroup');
       if (!dist) {
         shippingCost = 0;
         document.getElementById('shippingTag').textContent = '—';
         document.getElementById('shippingAmt').textContent = 'জেলা বেছে নিন';
+        courierGroup.style.display = 'none';
+        document.getElementById('courierService').value = '';
         recalc();
         return;
       }
@@ -384,10 +478,13 @@
         shippingCost = 70;
         document.getElementById('shippingTag').textContent = 'ঢাকার ভেতরে';
         document.getElementById('shippingAmt').textContent = '৳ ' + toBanglaNum(70);
+        courierGroup.style.display = 'none';
+        document.getElementById('courierService').value = '';
       } else {
         shippingCost = 120;
         document.getElementById('shippingTag').textContent = 'ঢাকার বাইরে';
         document.getElementById('shippingAmt').textContent = '৳ ' + toBanglaNum(120);
+        courierGroup.style.display = '';
       }
       recalc();
     });
@@ -447,6 +544,7 @@
           address:  document.getElementById('address').value.trim(),
           district: district,
           upazila:  document.getElementById('upazila').value.trim(),
+          courier:  document.getElementById('courierService').value || 'প্রযোজ্য নয় (ঢাকার ভেতরে)',
           notes:    document.getElementById('notes').value.trim(),
         },
         paymentMethod: 'ক্যাশ অন ডেলিভারি',
