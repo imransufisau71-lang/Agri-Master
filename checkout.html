@@ -464,13 +464,13 @@
     // ── Shipping on district change
     document.getElementById('district').addEventListener('change', function() {
       const dist = this.value;
-      const courierGroup = document.getElementById('courierGroup');
+      // const courierGroup = document.getElementById('courierGroup');
       if (!dist) {
         shippingCost = 0;
         document.getElementById('shippingTag').textContent = '—';
         document.getElementById('shippingAmt').textContent = 'জেলা বেছে নিন';
-        courierGroup.style.display = 'none';
-        document.getElementById('courierService').value = '';
+        // courierGroup.style.display = 'none';
+        // document.getElementById('courierService').value = '';
         recalc();
         return;
       }
@@ -484,7 +484,7 @@
         shippingCost = 100;
         document.getElementById('shippingTag').textContent = 'ঢাকার বাইরে';
         document.getElementById('shippingAmt').textContent = '৳ ' + toBanglaNum(100);
-        courierGroup.style.display = '';
+        // courierGroup.style.display = '';
       }
       recalc();
     });
