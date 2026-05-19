@@ -407,7 +407,7 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-    // 🔧 আপনার Firebase Config এখানে বসান
+    // Put yoFirebase Config here
     const firebaseConfig = {
       apiKey:            "YOUR_API_KEY",
       authDomain:        "YOUR_PROJECT_ID.firebaseapp.com",
@@ -431,7 +431,7 @@
     function closeDrawer() { hamburger.classList.remove('open'); drawer.classList.remove('open'); document.body.style.overflow = ''; }
     hamburger.addEventListener('click', () => { const isOpen = hamburger.classList.toggle('open'); drawer.classList.toggle('open', isOpen); document.body.style.overflow = isOpen ? 'hidden' : ''; });
 
-    const DHAKA_INSIDE = ['ঢাকা','নারায়ণগঞ্জ','গাজীপুর','নরসিংদী','মানিকগঞ্জ'];
+    const DHAKA_INSIDE = ['ঢাকা'];
     const UNIT_PRICE = 480;   // sale price per copy
     let shippingCost = 0;
     let qty = 1;
@@ -475,15 +475,15 @@
         return;
       }
       if (DHAKA_INSIDE.includes(dist)) {
-        shippingCost = 60;
+        shippingCost = 70;
         document.getElementById('shippingTag').textContent = 'ঢাকার ভেতরে';
-        document.getElementById('shippingAmt').textContent = '৳ ' + toBanglaNum(60);
+        document.getElementById('shippingAmt').textContent = '৳ ' + toBanglaNum(70);
         courierGroup.style.display = 'none';
         document.getElementById('courierService').value = '';
       } else {
-        shippingCost = 100;
+        shippingCost = 110;
         document.getElementById('shippingTag').textContent = 'ঢাকার বাইরে';
-        document.getElementById('shippingAmt').textContent = '৳ ' + toBanglaNum(100);
+        document.getElementById('shippingAmt').textContent = '৳ ' + toBanglaNum(110);
         // courierGroup.style.display = '';
       }
       recalc();
