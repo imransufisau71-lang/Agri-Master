@@ -518,59 +518,113 @@
 
     function genOrderId() { return 'AM-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substr(2,4).toUpperCase(); }
 
-    async function placeOrder() {
-      const honeypot = document.getElementById("company").value
-          
-      if (honeypot !== "") {
-        return
-      }
-      if (!validate()) { document.querySelector('.billing-card').scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
-      const btn = document.getElementById('placeOrderBtn');
-      btn.classList.add('loading'); btn.disabled = true;
-      const orderId = genOrderId();
-      const district = document.getElementById('district').value;
-      const subtotal = UNIT_PRICE * qty;
-      const orderData = {
-        orderId,
-        product: 'এগ্রি মাস্টার — ',
-        unitPrice: UNIT_PRICE,
-        quantity: qty,
-        subtotal: subtotal,
-        shipping: shippingCost,
-        total: subtotal + shippingCost,
-        customer: {
-          name:     document.getElementById('fullName').value.trim(),
-          phone:    document.getElementById('phone').value.trim(),
-          address:  document.getElementById('address').value.trim(),
-          district: district,
-          upazila:  document.getElementById('upazila').value.trim(),
-          courier:  document.getElementById('courierService').value || 'প্রযোজ্য নয় (ঢাকার ভেতরে)',
-          notes:    document.getElementById('notes').value.trim(),
-        },
-        paymentMethod: 'ক্যাশ অন ডেলিভারি',
-        status: 'pending',
-        createdAt: window._serverTimestamp ? window._serverTimestamp() : new Date().toISOString(),
-      };
-   try {
 
-  await fetch("/api/telegram",{
-    method:"POST",
-    headers:{
-      "Content-Type":"application/json"
+async function placeOrder() {
+
+  const honeypot = document.getElementById("company").value;
+
+  if (honeypot !== "") {
+    return;
+  }
+
+  if (!validate()) {
+    document.querySelector('.billing-card')
+      .scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    return;
+  }
+
+  const btn = document.getElementById('placeOrderBtn');
+
+  btn.classList.add('loading');
+  btn.disabled = true;
+
+  const orderId = genOrderId();
+  const district = document.getElementById('district').value;
+  const subtotal = UNIT_PRICE * qty;
+
+  const orderData = {
+    orderId,
+
+    product: 'এগ্রি মাস্টার',
+    unitPrice: UNIT_PRICE,
+
+    quantity: qty,
+
+    subtotal: subtotal,
+
+    shipping: shippingCost,
+
+    total: subtotal + shippingCost,
+
+    customer: {
+      name: document.getElementById('fullName').value.trim(),
+
+      phone: document.getElementById('phone').value.trim(),
+
+      address: document.getElementById('address').value.trim(),
+
+      district: district,
+
+      upazila: document.getElementById('upazila').value.trim(),
+
+      // FIXED
+      courier: 'প্রযোজ্য নয়',
+
+      notes: document.getElementById('notes').value.trim(),
     },
-    body: JSON.stringify(orderData)
-  });
 
-  // ✅ THIS IS THE KEY PART
-  localStorage.setItem("lastOrder", JSON.stringify(orderData));
-  window.location.href = "order-complete.html";
+    paymentMethod: 'ক্যাশ অন ডেলিভারি',
 
-} catch (err) {
-  console.error(err);
-  alert('কিছু একটা সমস্যা হয়েছে। আবার চেষ্টা করুন।');
-  btn.classList.remove('loading');
-  btn.disabled = false;
-} }
+    status: 'pending',
+
+    createdAt: new Date().toISOString(),
+  };
+
+  try {
+
+    console.log("Sending order:", orderData);
+
+    const response = await fetch("/api/telegram", {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json"
+      },
+
+      body: JSON.stringify(orderData)
+    });
+
+    const result = await response.json();
+
+    console.log("Server response:", result);
+
+    if (!response.ok) {
+      throw new Error(result.error || "Failed to send order");
+    }
+
+    // Save order locally
+    localStorage.setItem(
+      "lastOrder",
+      JSON.stringify(orderData)
+    );
+
+    // Redirect
+    window.location.href = "order-complete.html";
+
+  } catch (err) {
+
+    console.error("ORDER ERROR:", err);
+
+    alert("অর্ডার পাঠানো যায়নি। আবার চেষ্টা করুন।");
+
+    btn.classList.remove('loading');
+
+    btn.disabled = false;
+  }
+}
 
 window.placeOrder = placeOrder;
   </script>
