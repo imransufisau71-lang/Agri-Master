@@ -476,15 +476,15 @@
         return;
       }
       if (DHAKA_INSIDE.includes(dist)) {
-        shippingCost = 70;
+        shippingCost = 60;
         document.getElementById('shippingTag').textContent = 'ঢাকার ভেতরে';
-        document.getElementById('shippingAmt').textContent = '৳ ' + toBanglaNum(70);
+        document.getElementById('shippingAmt').textContent = '৳ ' + toBanglaNum(60);
         courierGroup.style.display = 'none';
         document.getElementById('courierService').value = '';
       } else {
-        shippingCost = 110;
+        shippingCost = 100;
         document.getElementById('shippingTag').textContent = 'ঢাকার বাইরে';
-        document.getElementById('shippingAmt').textContent = '৳ ' + toBanglaNum(110);
+        document.getElementById('shippingAmt').textContent = '৳ ' + toBanglaNum(100);
         // courierGroup.style.display = '';
       }
       recalc();
