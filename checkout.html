@@ -433,7 +433,7 @@
     hamburger.addEventListener('click', () => { const isOpen = hamburger.classList.toggle('open'); drawer.classList.toggle('open', isOpen); document.body.style.overflow = isOpen ? 'hidden' : ''; });
 
     const DHAKA_INSIDE = ['ঢাকা'];
-    const UNIT_PRICE = 480;   // sale price per copy
+    const UNIT_PRICE = 500;   // sale price per copy
     let shippingCost = 0;
     let qty = 1;
 
@@ -482,9 +482,9 @@
         courierGroup.style.display = 'none';
         document.getElementById('courierService').value = '';
       } else {
-        shippingCost = 100;
+        shippingCost = 90;
         document.getElementById('shippingTag').textContent = 'ঢাকার বাইরে';
-        document.getElementById('shippingAmt').textContent = '৳ ' + toBanglaNum(100);
+        document.getElementById('shippingAmt').textContent = '৳ ' + toBanglaNum(90);
         // courierGroup.style.display = '';
       }
       recalc();
