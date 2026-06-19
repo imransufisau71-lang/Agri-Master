@@ -356,11 +356,11 @@
                   <!-- unit price with strikethrough -->
                   <div class="product-price-row">
                     <span class="price-original">৳ ৫৫০</span>
-                    <span class="price-sale">৳ ৫০০</span>
+                    <span class="price-sale">৳ ৪৯০</span>
                     <span class="price-badge">সেল চলছে!</span>
                   </div>
                 </td>
-                <td id="lineTotalCell">৳ ৫০০</td>
+                <td id="lineTotalCell">৳ ৪৯০</td>
               </tr>
             </tbody>
           </table>
@@ -378,7 +378,7 @@
           <div class="order-totals">
             <div class="totals-row">
               <span>সাবটোটাল <span id="qtyNote" style="opacity:0.55;font-size:0.8rem">(১ কপি)</span></span>
-              <span class="amount" id="subtotalAmt">৳ ৫০০</span>
+              <span class="amount" id="subtotalAmt">৳ ৪৯০</span>
             </div>
             <div class="totals-row">
               <span>ডেলিভারি চার্জ <span class="shipping-tag" id="shippingTag">—</span></span>
@@ -386,7 +386,7 @@
             </div>
             <div class="totals-row total-final">
               <span>সর্বমোট</span>
-              <span class="amount" id="totalAmt">৳ ৫০০</span>
+              <span class="amount" id="totalAmt">৳ ৪৯০</span>
             </div>
           </div>
           <button class="place-order-btn" id="placeOrderBtn" onclick="placeOrder()">
@@ -482,9 +482,9 @@
         courierGroup.style.display = 'none';
         document.getElementById('courierService').value = '';
       } else {
-        shippingCost = 90;
+        shippingCost = 100;
         document.getElementById('shippingTag').textContent = 'ঢাকার বাইরে';
-        document.getElementById('shippingAmt').textContent = '৳ ' + toBanglaNum(90);
+        document.getElementById('shippingAmt').textContent = '৳ ' + toBanglaNum(100);
         // courierGroup.style.display = '';
       }
       recalc();
