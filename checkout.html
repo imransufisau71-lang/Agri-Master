@@ -353,14 +353,14 @@
                 <td>
                   <div class="product-name">এগ্রি মাস্টার</div>
                  <!-- <div class="product-meta">হার্ডকভার সংস্করণ</div> -->
-                  <!-- unit price with strikethrough -->
+                  <!-- UNIT PRICE!! UNIT PRICE!!! -->
                   <div class="product-price-row">
-                    <span class="price-original">৳ ৫৫০</span>
-                    <span class="price-sale">৳ ৪৯০</span>
+                    <span class="price-original">৳ ৪৫০</span>
+                    <span class="price-sale">৳ ৪২০</span>
                     <span class="price-badge">সেল চলছে!</span>
                   </div>
                 </td>
-                <td id="lineTotalCell">৳ ৪৯০</td>
+                <td id="lineTotalCell">৳ ৪২০</td>
               </tr>
             </tbody>
           </table>
@@ -378,7 +378,8 @@
           <div class="order-totals">
             <div class="totals-row">
               <span>সাবটোটাল <span id="qtyNote" style="opacity:0.55;font-size:0.8rem">(১ কপি)</span></span>
-              <span class="amount" id="subtotalAmt">৳ ৪৯০</span>
+<--! SUBTOTAL PRICE -->
+              <span class="amount" id="subtotalAmt">৳ ৪২০</span>
             </div>
             <div class="totals-row">
               <span>ডেলিভারি চার্জ <span class="shipping-tag" id="shippingTag">—</span></span>
@@ -386,7 +387,8 @@
             </div>
             <div class="totals-row total-final">
               <span>সর্বমোট</span>
-              <span class="amount" id="totalAmt">৳ ৪৯০</span>
+<--! UNIT PRICEEE -->
+              <span class="amount" id="totalAmt">৳ ৪২০</span>
             </div>
           </div>
           <button class="place-order-btn" id="placeOrderBtn" onclick="placeOrder()">
@@ -431,9 +433,9 @@
     const drawer    = document.getElementById('navDrawer');
     function closeDrawer() { hamburger.classList.remove('open'); drawer.classList.remove('open'); document.body.style.overflow = ''; }
     hamburger.addEventListener('click', () => { const isOpen = hamburger.classList.toggle('open'); drawer.classList.toggle('open', isOpen); document.body.style.overflow = isOpen ? 'hidden' : ''; });
-
+// UNIT PRICE HERE!!!! UNIT PRICE HERE!!!!
     const DHAKA_INSIDE = ['ঢাকা'];
-    const UNIT_PRICE = 490;   // sale price per copy
+    const UNIT_PRICE = 420;   // sale price per copy
     let shippingCost = 0;
     let qty = 1;
 
