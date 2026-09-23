@@ -1,220 +1,199 @@
 <!DOCTYPE html>
 <html lang="bn" translate="no">
 <head>
-			<meta name="google" content="notranslate">
+  <meta name="google" content="notranslate">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
-
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>অর্ডার করুন — এগ্রি মাস্টার</title>
+  <title>অর্ডার করুন — কেমিস্ট্রি মাস্টার</title>
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-      --soil: #0d2040;
-      --earth: #1a3a6b;
-      --wheat: #2e8b3c;
-      --straw: #8dc63f;
-      --sage: #5ab4e5;
-      --fog: #eef6fb;
-      --ink: #071528;
-      --cream: #f0f8ff;
-      --navy: #1a3a6b;
-      --green: #2e8b3c;
-      --lime: #8dc63f;
-      --sky: #5ab4e5;
-      --gold: #f5c518;
+    :root {
+      --soil: #020617;
+      --earth: #1e293b;
+      --wheat: #0ea5e9;
+      --straw: #38bdf8;
+      --sage: #94a3b8;
+      --fog: #f8fafc;
+      --ink: #0f172a;
+      --cream: #ffffff;
+      --gold: #f59e0b;
     }
     html { scroll-behavior: smooth; }
     body { font-family: 'Tiro Bangla', serif; background: var(--fog); color: var(--soil); min-height: 100vh; }
 
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 3rem; height: 70px; display: flex; align-items: center; justify-content: space-between; background: var(--ink); box-shadow: 0 2px 20px rgba(0,0,0,0.3); }
-    .nav-brand { font-family: 'Tiro Bangla', serif; font-size: 1.1rem; font-style: italic; color: var(--cream); text-decoration: none; z-index: 1001; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 3rem; height: 70px; display: flex; align-items: center; justify-content: space-between; background: var(--ink); box-shadow: 0 2px 20px rgba(0,0,0,0.2); }
+    .nav-brand { font-family: 'Tiro Bangla', serif; font-size: 1.2rem; font-weight: 700; color: var(--cream); text-decoration: none; z-index: 1001; }
     .nav-links { display: flex; align-items: center; gap: 2.2rem; list-style: none; }
-    .nav-links a { font-family: 'Tiro Bangla', serif; font-size: 0.85rem; font-weight: 500; color: var(--cream); text-decoration: none; position: relative; padding-bottom: 3px; opacity: 0.75; transition: opacity 0.3s; }
+    .nav-links a { font-family: 'Tiro Bangla', serif; font-size: 0.9rem; font-weight: 500; color: var(--cream); text-decoration: none; position: relative; padding-bottom: 3px; opacity: 0.85; transition: opacity 0.3s; }
     .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.35s cubic-bezier(0.4,0,0.2,1); }
     .nav-links a:hover { opacity: 1; }
     .nav-links a:hover::after { width: 100%; }
-    .nav-buy-btn { background: #f5c518 !important; color: var(--ink) !important; padding: 0.45rem 1.2rem !important; opacity: 1 !important; border-radius: 2px; }
-    .nav-buy-btn::after { display: none !important; }
+
+    /* Added Nav Hamburger and Drawer styles */
     .nav-hamburger { display: none; flex-direction: column; justify-content: center; align-items: center; width: 40px; height: 40px; background: none; border: none; cursor: pointer; z-index: 1001; gap: 5px; }
     .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: var(--cream); transition: transform 0.35s ease, opacity 0.25s ease; transform-origin: center; }
     .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
     .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-    .nav-drawer { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--ink); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 2.2rem; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
+    .nav-drawer { display: flex; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--ink); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 2.2rem; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
     .nav-drawer.open { opacity: 1; pointer-events: all; }
     .nav-drawer a { font-family: 'Tiro Bangla', serif; font-size: 1.8rem; font-weight: 700; color: var(--straw); text-decoration: none; position: relative; padding-bottom: 4px; transition: color 0.3s; }
     .nav-drawer a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.35s cubic-bezier(0.4,0,0.2,1); }
     .nav-drawer a:hover { color: var(--wheat); }
     .nav-drawer a:hover::after { width: 100%; }
-    .drawer-buy { color: var(--wheat) !important; }
 
     .checkout-page { padding-top: 70px; min-height: 100vh; }
     .checkout-header { background: var(--soil); padding: 3.5rem 6vw 3rem; }
-    .checkout-header-label { font-family: 'Tiro Bangla', serif; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--wheat); margin-bottom: 0.6rem; }
+    .checkout-header-label { font-family: 'Tiro Bangla', serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--wheat); margin-bottom: 0.6rem; }
     .checkout-header h1 { font-family: 'Tiro Bangla', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; color: var(--straw); line-height: 1.1; }
-    .checkout-header h1 em { font-style: italic; color: var(--wheat); }
 
-    .checkout-body { display: grid; grid-template-columns: 1fr 420px; gap: 3rem; max-width: 1200px; margin: 0 auto; padding: 3rem 4vw; align-items: start; }
+    .checkout-body { display: grid; grid-template-columns: 1fr 450px; gap: 3rem; max-width: 1200px; margin: 0 auto; padding: 3rem 4vw; align-items: start; }
 
-    .billing-card { background: #fff; border: 1px solid rgba(74,53,32,0.1); }
-    .card-header { padding: 1.8rem 2rem 1.2rem; border-bottom: 1px solid rgba(74,53,32,0.08); }
-    .card-header h2 { font-family: 'Tiro Bangla', serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--earth); }
+    .billing-card { background: #fff; border: 1px solid rgba(15,23,42,0.1); border-radius: 4px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.02);}
+    .card-header { padding: 1.8rem 2rem 1.2rem; border-bottom: 1px solid rgba(15,23,42,0.08); background: #f8fafc;}
+    .card-header h2 { font-family: 'Tiro Bangla', serif; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.1em; color: var(--earth); }
     .card-body { padding: 2rem; }
+
+    /* Book Choice Styling */
+    .book-choice-wrapper { background: rgba(14, 165, 233, 0.05); padding: 1.5rem; border-radius: 6px; border: 1px solid rgba(14, 165, 233, 0.2); margin-bottom: 2rem; }
+    .book-choice-title { font-weight: 700; color: var(--ink); margin-bottom: 1rem; display: block; font-size: 1.05rem; }
+    .radio-group { display: flex; flex-direction: column; gap: 0.8rem; }
+    .radio-label { display: flex; align-items: center; gap: 0.8rem; font-size: 1rem; color: var(--earth); cursor: pointer; padding: 0.5rem; border-radius: 4px; transition: background 0.2s;}
+    .radio-label:hover { background: rgba(14, 165, 233, 0.1); }
+    .radio-label input[type="radio"] { width: 18px; height: 18px; accent-color: var(--wheat); cursor: pointer; }
 
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
     .form-group { margin-bottom: 1.4rem; }
-    .form-group label { display: block; font-family: 'Tiro Bangla', serif; font-size: 0.8rem; font-weight: 600; color: var(--earth); margin-bottom: 0.5rem; }
-    .form-group label .req { color: var(--wheat); margin-left: 2px; }
-    .form-group input, .form-group select, .form-group textarea { width: 100%; background: var(--fog); border: 1px solid rgba(74,53,32,0.15); border-radius: 0; padding: 0.8rem 1rem; font-family: 'Tiro Bangla', serif; font-size: 0.92rem; color: var(--soil); outline: none; transition: border-color 0.25s, box-shadow 0.25s; appearance: none; }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--wheat); box-shadow: 0 0 0 3px rgba(200,169,110,0.12); background: #fff; }
-    .form-group input.error, .form-group select.error, .form-group textarea.error { border-color: #c0392b; background: #fff5f5; }
-    .form-group textarea { resize: vertical; min-height: 90px; }
-    .form-group select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%234a3520'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; cursor: pointer; }
-    .field-error { font-family: 'Tiro Bangla', serif; font-size: 0.75rem; color: #c0392b; margin-top: 0.3rem; display: none; }
+    .form-group label { display: block; font-family: 'Tiro Bangla', serif; font-size: 0.9rem; font-weight: 600; color: var(--earth); margin-bottom: 0.5rem; }
+    .form-group label .req { color: #dc2626; margin-left: 2px; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; background: #fff; border: 1px solid rgba(15,23,42,0.15); border-radius: 4px; padding: 0.8rem 1rem; font-family: 'Tiro Bangla', serif; font-size: 0.95rem; color: var(--soil); outline: none; transition: border-color 0.25s, box-shadow 0.25s; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--wheat); box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.12); }
+    .form-group input.error, .form-group select.error { border-color: #ef4444; background: #fef2f2; }
+    .field-error { font-family: 'Tiro Bangla', serif; font-size: 0.8rem; color: #ef4444; margin-top: 0.4rem; display: none; }
     .field-error.show { display: block; }
 
-    .cod-notice { background: rgba(122,140,110,0.12); border-left: 3px solid var(--sage); padding: 1rem 1.2rem; margin-bottom: 1.4rem; display: flex; align-items: flex-start; gap: 0.8rem; }
-    .cod-notice p { font-family: 'Tiro Bangla', serif; font-size: 0.88rem; color: var(--earth); line-height: 1.65; }
-    .cod-notice strong { color: var(--soil); }
+    .cod-notice { background: rgba(56, 189, 248, 0.1); border-left: 4px solid var(--wheat); padding: 1.2rem; margin-bottom: 1.8rem; display: flex; align-items: flex-start; gap: 1rem; border-radius: 0 4px 4px 0;}
+    .cod-notice p { font-family: 'Tiro Bangla', serif; font-size: 0.95rem; color: var(--ink); line-height: 1.6; }
 
-    .order-card { background: #fff; border: 1px solid rgba(74,53,32,0.1); position: sticky; top: 90px; }
+    .order-card { background: #fff; border: 1px solid rgba(15,23,42,0.1); border-radius: 4px; position: sticky; top: 90px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); overflow: hidden;}
     .order-table { width: 100%; border-collapse: collapse; }
-    .order-table thead th { font-family: 'Tiro Bangla', serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--earth); padding: 1.4rem 2rem 1rem; text-align: left; border-bottom: 1px solid rgba(74,53,32,0.1); }
+    .order-table thead th { font-family: 'Tiro Bangla', serif; font-size: 0.8rem; font-weight: 700; color: var(--earth); padding: 1.4rem 2rem 1rem; text-align: left; border-bottom: 1px solid rgba(15,23,42,0.1); background: #f8fafc;}
     .order-table thead th:last-child { text-align: right; }
-    .order-table tbody td { padding: 1.2rem 2rem; font-size: 0.9rem; color: var(--soil); border-bottom: 1px solid rgba(74,53,32,0.06); vertical-align: top; }
-    .order-table tbody td:last-child { text-align: right; font-weight: 600; }
-    .product-price-row { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.4rem; flex-wrap: wrap; }
-    .price-original { font-family: 'Tiro Bangla', serif; font-size: 0.8rem; color: #999; text-decoration: line-through; }
-    .price-sale { font-family: 'Tiro Bangla', serif; font-size: 0.95rem; font-weight: 700; color: var(--earth); }
-    .price-badge { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; background: #c0392b; color: #fff; padding: 0.15rem 0.5rem; border-radius: 2px; }
+    .order-table tbody td { padding: 1.5rem 2rem; font-size: 1rem; color: var(--soil); border-bottom: 1px solid rgba(15,23,42,0.06); }
+    .order-table tbody td:last-child { text-align: right; font-weight: 700; }
 
-    /* Qty Counter */
-    .qty-row { display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; border-top: 1px solid rgba(74,53,32,0.08); border-bottom: 1px solid rgba(74,53,32,0.08); background: rgba(200,169,110,0.04); }
-    .qty-label { font-family: 'Tiro Bangla', serif; font-size: 0.88rem; font-weight: 600; color: var(--soil); }
-    .qty-counter { display: flex; align-items: center; gap: 0; border: 1.5px solid rgba(74,53,32,0.18); }
-    .qty-btn { width: 38px; height: 38px; background: var(--fog); border: none; font-size: 1.3rem; font-weight: 400; color: var(--earth); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, color 0.2s; line-height: 1; user-select: none; }
-    .qty-btn:hover { background: var(--gold); color: var(--ink); }
-    .qty-btn:active { transform: scale(0.92); }
-    .qty-btn:disabled { opacity: 0.35; cursor: not-allowed; background: var(--fog); }
-    .qty-value { min-width: 46px; height: 38px; display: flex; align-items: center; justify-content: center; font-family: 'Tiro Bangla', serif; font-size: 1.1rem; font-weight: 700; color: var(--soil); border-left: 1.5px solid rgba(74,53,32,0.18); border-right: 1.5px solid rgba(74,53,32,0.18); background: #fff; }
-    .product-name { font-weight: 700; color: var(--soil); line-height: 1.4; }
-    .product-meta { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; color: var(--sage); margin-top: 0.25rem; }
-    .order-totals { padding: 0 2rem; }
-    .totals-row { display: flex; justify-content: space-between; align-items: center; padding: 0.85rem 0; border-bottom: 1px solid rgba(74,53,32,0.06); font-size: 0.9rem; color: var(--earth); }
+    .product-name { font-weight: 700; color: var(--ink); line-height: 1.4; font-size: 1.1rem;}
+    .product-meta { font-family: 'Tiro Bangla', serif; font-size: 0.85rem; color: var(--sage); margin-top: 0.3rem; }
+
+    .qty-row { display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 2rem; border-bottom: 1px solid rgba(15,23,42,0.08); background: #f8fafc; }
+    .qty-label { font-family: 'Tiro Bangla', serif; font-size: 0.95rem; font-weight: 600; color: var(--earth); }
+    .qty-counter { display: flex; align-items: center; border: 1px solid rgba(15,23,42,0.2); border-radius: 4px; overflow: hidden; background: #fff;}
+    .qty-btn { width: 38px; height: 38px; background: #fff; border: none; font-size: 1.3rem; color: var(--earth); cursor: pointer; transition: background 0.2s; }
+    .qty-btn:hover { background: var(--fog); color: var(--ink); }
+    .qty-value { min-width: 46px; height: 38px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 700; border-left: 1px solid rgba(15,23,42,0.1); border-right: 1px solid rgba(15,23,42,0.1); }
+
+    .order-totals { padding: 1rem 2rem; }
+    .totals-row { display: flex; justify-content: space-between; padding: 0.85rem 0; border-bottom: 1px solid rgba(15,23,42,0.06); font-size: 0.95rem; color: var(--earth); }
     .totals-row:last-child { border: none; }
-    .totals-row.total-final { padding: 1.2rem 0; font-family: 'Tiro Bangla', serif; font-size: 1.2rem; font-weight: 700; color: var(--soil); }
-    .totals-row .amount { font-weight: 600; color: var(--soil); }
-    .totals-row.total-final .amount { color: var(--wheat); font-size: 1.3rem; }
-    .shipping-tag { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--sage); background: rgba(122,140,110,0.1); padding: 0.15rem 0.5rem; margin-left: 0.5rem; }
+    .totals-row.total-final { padding: 1.2rem 0; font-size: 1.2rem; font-weight: 700; color: var(--soil); border-top: 2px solid rgba(15,23,42,0.1); margin-top: 0.5rem;}
+    .shipping-tag { font-family: 'Tiro Bangla', serif; font-size: 0.75rem; color: var(--wheat); background: rgba(14, 165, 233, 0.1); padding: 0.2rem 0.6rem; border-radius: 12px; margin-left: 0.5rem; }
 
-    .place-order-btn { display: block; width: calc(100% - 4rem); margin: 1.5rem 2rem 2rem; background: var(--gold); color: var(--ink); border: none; padding: 1.1rem 2rem; font-family: 'Tiro Bangla', serif; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.04em; cursor: pointer; transition: background 0.3s, transform 0.2s; position: relative; overflow: hidden; }
-    .place-order-btn:hover:not(:disabled) { background: #e8b800; transform: translateY(-1px); }
-    .place-order-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-    .btn-spinner { display: none; width: 16px; height: 16px; border: 2px solid rgba(26,18,8,0.3); border-top-color: var(--ink); border-radius: 50%; animation: spin 0.7s linear infinite; position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); }
-    .place-order-btn.loading .btn-spinner { display: block; }
-    @keyframes spin { to { transform: translateY(-50%) rotate(360deg); } }
+    .place-order-btn { display: block; width: calc(100% - 4rem); margin: 0 2rem 2rem; background: var(--gold); color: var(--ink); border: none; padding: 1.2rem 2rem; font-family: 'Tiro Bangla', serif; font-size: 1rem; font-weight: 700; border-radius: 4px; cursor: pointer; transition: background 0.3s, transform 0.2s; position: relative; }
+    .place-order-btn:hover:not(:disabled) { background: #d97706; color: white; transform: translateY(-2px); }
 
-    .modal-overlay { position: fixed; inset: 0; z-index: 2000; background: rgba(26,18,8,0.7); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; padding: 1.5rem; }
-    .modal-overlay.show { opacity: 1; pointer-events: all; }
-    .modal { background: #fff; max-width: 480px; width: 100%; padding: 3rem 2.5rem; text-align: center; transform: translateY(20px); transition: transform 0.35s ease; }
-    .modal-overlay.show .modal { transform: none; }
-    .modal-icon { font-size: 2.5rem; margin-bottom: 1.2rem; }
-    .modal h2 { font-family: 'Tiro Bangla', serif; font-size: 1.6rem; font-weight: 700; color: var(--soil); margin-bottom: 0.8rem; }
-    .modal h2 em { font-style: italic; color: var(--earth); }
-    .modal p { font-size: 0.95rem; line-height: 1.75; color: var(--earth); margin-bottom: 1.8rem; }
-    .modal-order-id { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.18em; color: var(--sage); background: var(--fog); padding: 0.5rem 1rem; display: inline-block; margin-bottom: 2rem; }
-    .modal-btn { display: inline-block; background: var(--gold); color: var(--ink); padding: 0.9rem 2rem; text-decoration: none; font-family: 'Tiro Bangla', serif; font-size: 0.88rem; font-weight: 600; transition: background 0.3s; }
-    .modal-btn:hover { background: #e8b800; }
+    footer { background: var(--ink); padding: 3rem 6vw 2rem; text-align: center; color: var(--sage); font-size: 0.9rem;}
 
-    footer { background: var(--ink); padding: 3rem 6vw 2rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem; }
-    .footer-brand { font-family: 'Tiro Bangla', serif; font-size: 1.3rem; color: var(--straw); }
-    .footer-brand em { color: var(--wheat); }
-    .footer-copy { font-family: 'Tiro Bangla', serif; font-size: 0.75rem; color: rgba(200,169,110,0.3); text-align: right; line-height: 1.9; }
-
+    /* Added Mobile Responsiveness */
     @media(max-width: 768px) {
       nav { padding: 0 1.2rem; }
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
-      .nav-drawer { display: flex; }
+      .checkout-body { grid-template-columns: 1fr; gap: 2rem; padding: 2rem 5vw; }
       .checkout-header { padding: 2.5rem 5vw 2rem; }
-      .checkout-body { grid-template-columns: 1fr; padding: 1.5rem 4vw; gap: 1.5rem; }
+      .checkout-header h1 { font-size: clamp(2rem, 8vw, 2.8rem); }
       .order-card { position: static; }
       .form-row { grid-template-columns: 1fr; gap: 0; }
-      .card-body { padding: 1.5rem; }
-      .order-table thead th, .order-table tbody td { padding-left: 1.5rem; padding-right: 1.5rem; }
-      .order-totals { padding: 0 1.5rem; }
-      .place-order-btn { width: calc(100% - 3rem); margin: 1.5rem 1.5rem 1.5rem; }
-      footer { flex-direction: column; align-items: flex-start; }
+      .card-header, .card-body { padding: 1.5rem; }
+      .order-table thead th, .order-table tbody td { padding: 1.2rem 1.5rem; }
+      .qty-row, .order-totals { padding: 1rem 1.5rem; }
+      .place-order-btn { width: calc(100% - 3rem); margin: 0 1.5rem 1.5rem; }
     }
   </style>
 </head>
 <body>
 
+  <!-- Added Nav Drawer -->
   <div class="nav-drawer" id="navDrawer">
-    <a href="read.html" onclick="closeDrawer()">একটু পড়ুন</a>
+    <a href="index.html" onclick="closeDrawer()">হোম</a>
     <a href="about.html" onclick="closeDrawer()">লেখক পরিচিতি</a>
-    <a href="checkout.html" onclick="closeDrawer()" class="drawer-buy">বই কিনুন</a>
   </div>
 
   <nav>
-    <a href="index.html" class="nav-brand">এগ্রি মাস্টার</a>
+    <a href="index.html" class="nav-brand">কেমিস্ট্রি মাস্টার</a>
     <ul class="nav-links">
-      <li><a href="read.html">একটু পড়ুন</a></li>
       <li><a href="about.html">লেখক পরিচিতি</a></li>
-      <li><a href="checkout.html" class="nav-buy-btn">বই কিনুন</a></li>
     </ul>
+    <!-- Added Hamburger Menu Button -->
     <button class="nav-hamburger" id="hamburger" aria-label="মেনু">
       <span></span><span></span><span></span>
     </button>
   </nav>
 
-  <!-- সাফল্য মোডাল -->
-  <div class="modal-overlay" id="successModal">
-    <div class="modal">
-      <div class="modal-icon">🌾</div>
-      <h2>অর্ডার <em>সফল!</em></h2>
-      <p>আপনার অর্ডার গ্রহণ করা হয়েছে। <em>এগ্রি মাস্টার</em> শীঘ্রই আপনার ঠিকানায় পৌঁছে যাবে। ডেলিভারির সময় পেমেন্ট করুন।</p>
-      <div class="modal-order-id" id="orderIdDisplay"></div>
-      <a href="index.html" class="modal-btn">হোম পেজে ফিরুন</a>
-    </div>
-  </div>
-
   <div class="checkout-page">
     <div class="checkout-header">
       <p class="checkout-header-label">নিরাপদ অর্ডার</p>
-      <h1>আপনার <em>অর্ডার</em> সম্পন্ন করুন</h1>
+      <h1>বই <em>অর্ডার</em> করুন</h1>
     </div>
 
     <div class="checkout-body">
       <div class="billing-card">
         <div class="card-header">
-          <h2>ডেলিভারি তথ্য</h2>
+          <h2>আপনার তথ্য দিন</h2>
         </div>
         <div class="card-body">
+
           <div class="cod-notice">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5ab4e5" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
-            <p><strong>শুধুমাত্র ক্যাশ অন ডেলিভারি।</strong> এখন কোনো পেমেন্ট করতে হবে না — বই হাতে পাওয়ার পর পেমেন্ট করুন।</p>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+            <p><strong>ক্যাশ অন ডেলিভারি:</strong> বই হাতে পেয়ে টাকা পরিশোধ করবেন। এখন কোনো পেমেন্ট প্রয়োজন নেই।</p>
           </div>
 
+          <!-- BOOK SELECTION CHOICES -->
+          <div class="book-choice-wrapper">
+            <span class="book-choice-title">কোন বইটি নিতে চান? <span style="color:#dc2626">*</span></span>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="book_choice" value="paper1" checked>
+                কেমিস্ট্রি মাস্টার ১ম পত্র
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="book_choice" value="paper2">
+                কেমিস্ট্রি মাস্টার ২য় পত্র
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="book_choice" value="both">
+                ১ম ও ২য় পত্র (একত্রে)
+              </label>
+            </div>
+          </div>
+
+          <!-- CUSTOMER INFO -->
           <div class="form-group">
             <label>পূর্ণ নাম <span class="req">*</span></label>
-            <input type="text" id="fullName" placeholder="আপনার পূর্ণ নাম লিখুন" autocomplete="name"/>
+            <input type="text" id="fullName" placeholder="আপনার পূর্ণ নাম লিখুন"/>
             <div class="field-error" id="fullName-error">অনুগ্রহ করে আপনার নাম লিখুন।</div>
           </div>
-
           <div class="form-group">
             <label>মোবাইল নম্বর <span class="req">*</span></label>
-            <input type="tel" id="phone" placeholder="01XXXXXXXXX" autocomplete="tel"/>
+            <input type="tel" id="phone" placeholder="01XXXXXXXXX"/>
             <div class="field-error" id="phone-error">সঠিক মোবাইল নম্বর লিখুন।</div>
           </div>
-
           <div class="form-group">
             <label>সম্পূর্ণ ঠিকানা <span class="req">*</span></label>
-            <input type="text" id="address" placeholder="বাড়ি নম্বর, রাস্তার নাম, এলাকা" autocomplete="street-address"/>
-            <div class="field-error" id="address-error">অনুগ্রহ করে সম্পূর্ণ ঠিকানা লিখুন।</div>
+            <input type="text" id="address" placeholder="গ্রাম/রাস্তা, পাড়া/মহল্লা"/>
+            <div class="field-error" id="address-error">ঠিকানা লিখুন।</div>
           </div>
 
           <div class="form-row">
@@ -222,124 +201,31 @@
               <label>জেলা <span class="req">*</span></label>
               <select id="district">
                 <option value="">জেলা বেছে নিন</option>
-                <!-- ঢাকা বিভাগ -->
-                <optgroup label="ঢাকা বিভাগ">
-                  <option>ঢাকা</option>
-                  <option>গাজীপুর</option>
-                  <option>নারায়ণগঞ্জ</option>
-                  <option>নরসিংদী</option>
-                  <option>মানিকগঞ্জ</option>
-                  <option>মুন্সিগঞ্জ</option>
-                  <option>কিশোরগঞ্জ</option>
-                  <option>টাঙ্গাইল</option>
-                  <option>ফরিদপুর</option>
-                  <option>গোপালগঞ্জ</option>
-                  <option>মাদারীপুর</option>
-                  <option>রাজবাড়ী</option>
-                  <option>শরীয়তপুর</option>
-                </optgroup>
-                <!-- চট্টগ্রাম বিভাগ -->
-                <optgroup label="চট্টগ্রাম বিভাগ">
-                  <option>চট্টগ্রাম</option>
-                  <option>কুমিল্লা</option>
-                  <option>কক্সবাজার</option>
-                  <option>ব্রাহ্মণবাড়িয়া</option>
-                  <option>চাঁদপুর</option>
-                  <option>ফেনী</option>
-                  <option>লক্ষ্মীপুর</option>
-                  <option>নোয়াখালী</option>
-                  <option>রাঙ্গামাটি</option>
-                  <option>বান্দরবান</option>
-                  <option>খাগড়াছড়ি</option>
-                </optgroup>
-                <!-- রাজশাহী বিভাগ -->
-                <optgroup label="রাজশাহী বিভাগ">
-                  <option>রাজশাহী</option>
-                  <option>বগুড়া</option>
-                  <option>চাঁপাইনবাবগঞ্জ</option>
-                  <option>জয়পুরহাট</option>
-                  <option>নওগাঁ</option>
-                  <option>নাটোর</option>
-                  <option>পাবনা</option>
-                  <option>সিরাজগঞ্জ</option>
-                </optgroup>
-                <!-- খুলনা বিভাগ -->
-                <optgroup label="খুলনা বিভাগ">
-                  <option>খুলনা</option>
-                  <option>বাগেরহাট</option>
-                  <option>চুয়াডাঙ্গা</option>
-                  <option>যশোর</option>
-                  <option>ঝিনাইদহ</option>
-                  <option>কুষ্টিয়া</option>
-                  <option>মাগুরা</option>
-                  <option>মেহেরপুর</option>
-                  <option>নড়াইল</option>
-                  <option>সাতক্ষীরা</option>
-                </optgroup>
-                <!-- বরিশাল বিভাগ -->
-                <optgroup label="বরিশাল বিভাগ">
-                  <option>বরিশাল</option>
-                  <option>বরগুনা</option>
-                  <option>ভোলা</option>
-                  <option>ঝালকাঠি</option>
-                  <option>পটুয়াখালী</option>
-                  <option>পিরোজপুর</option>
-                </optgroup>
-                <!-- সিলেট বিভাগ -->
-                <optgroup label="সিলেট বিভাগ">
-                  <option>সিলেট</option>
-                  <option>হবিগঞ্জ</option>
-                  <option>মৌলভীবাজার</option>
-                  <option>সুনামগঞ্জ</option>
-                </optgroup>
-                <!-- রংপুর বিভাগ -->
-                <optgroup label="রংপুর বিভাগ">
-                  <option>রংপুর</option>
-                  <option>দিনাজপুর</option>
-                  <option>গাইবান্ধা</option>
-                  <option>কুড়িগ্রাম</option>
-                  <option>লালমনিরহাট</option>
-                  <option>নীলফামারী</option>
-                  <option>পঞ্চগড়</option>
-                  <option>ঠাকুরগাঁও</option>
-                </optgroup>
-                <!-- ময়মনসিংহ বিভাগ -->
-                <optgroup label="ময়মনসিংহ বিভাগ">
-                  <option>ময়মনসিংহ</option>
-                  <option>জামালপুর</option>
-                  <option>নেত্রকোণা</option>
-                  <option>শেরপুর</option>
-                </optgroup>
+                <option>ঢাকা</option>
+                <option>চট্টগ্রাম</option>
+                <option>রাজশাহী</option>
+                <option>খুলনা</option>
+                <option>বরিশাল</option>
+                <option>সিলেট</option>
+                <option>রংপুর</option>
+                <option>ময়মনসিংহ</option>
+                <option>অন্যান্য (ঢাকার বাইরে)</option>
               </select>
-              <div class="field-error" id="district-error">অনুগ্রহ করে জেলা বেছে নিন।</div>
+              <div class="field-error" id="district-error">জেলা বেছে নিন।</div>
             </div>
             <div class="form-group">
-              <label>উপজেলা / এলাকা</label>
-              <input type="text" id="upazila" placeholder="যেমন: ধানমন্ডি, মিরপুর"/>
+              <label>উপজেলা / থানা</label>
+              <input type="text" id="upazila" placeholder="থানার নাম"/>
             </div>
-          </div>
-
-          <!-- Courier selector — only shown for outside-Dhaka districts -->
-          <!-- <div class="form-group" id="courierGroup" style="display:none;">
-            <label>কুরিয়ার সার্ভিস <span class="req">*</span></label>
-            <select id="courierService">
-              <option value="">কুরিয়ার বেছে নিন</option>
-              <option value="সুন্দরবন কুরিয়ার সার্ভিস">সুন্দরবন কুরিয়ার সার্ভিস</option>
-              <option value="অন্যান্য">অন্যান্য</option>
-            </select>
-          </div> -->
-
-          <div class="form-group">
-            <label>বিশেষ নির্দেশনা <span style="opacity:0.5;font-size:0.72rem">(ঐচ্ছিক)</span></label>
-            <textarea id="notes" placeholder="ডেলিভারির জন্য বিশেষ নির্দেশনা, কাছের স্থানচিহ্ন ইত্যাদি..."></textarea>
           </div>
         </div>
       </div>
 
+      <!-- ORDER SUMMARY PANEL -->
       <div>
         <div class="order-card">
           <div class="card-header">
-            <h2>আপনার অর্ডার</h2>
+            <h2>অর্ডার সামারি</h2>
           </div>
           <table class="order-table">
             <thead>
@@ -351,152 +237,127 @@
             <tbody>
               <tr>
                 <td>
-                  <div class="product-name">এগ্রি মাস্টার</div>
-                 <!-- <div class="product-meta">হার্ডকভার সংস্করণ</div> -->
-                  <!-- UNIT PRICE!! UNIT PRICE!!! -->
-                  <div class="product-price-row">
-                    <span class="price-original">৳ ৪৫০</span>
-                    <span class="price-sale">৳ ৪২০</span>
-                    <span class="price-badge">সেল চলছে!</span>
-                  </div>
+                  <div class="product-name" id="displayBookName">কেমিস্ট্রি মাস্টার ১ম পত্র</div>
                 </td>
-                <td id="lineTotalCell">৳ ৪২০</td>
+                <td id="displayUnitPrice">৳ ৩৫০</td>
               </tr>
             </tbody>
           </table>
 
-          <!-- Quantity counter -->
           <div class="qty-row">
             <span class="qty-label">কপির সংখ্যা</span>
             <div class="qty-counter">
-              <button class="qty-btn" id="qtyMinus" onclick="changeQty(-1)" aria-label="কমান">−</button>
+              <button class="qty-btn" id="qtyMinus" onclick="changeQty(-1)">−</button>
               <span class="qty-value" id="qtyDisplay">১</span>
-              <button class="qty-btn" id="qtyPlus"  onclick="changeQty(+1)" aria-label="বাড়ান">+</button>
+              <button class="qty-btn" id="qtyPlus"  onclick="changeQty(+1)">+</button>
             </div>
           </div>
 
           <div class="order-totals">
             <div class="totals-row">
-              <span>সাবটোটাল <span id="qtyNote" style="opacity:0.55;font-size:0.8rem">(১ কপি)</span></span>
-
-              <span class="amount" id="subtotalAmt">৳ ৪২০</span>
+              <span>বইয়ের মূল্য</span>
+              <span id="subtotalAmt">৳ ৩৫০</span>
             </div>
             <div class="totals-row">
               <span>ডেলিভারি চার্জ <span class="shipping-tag" id="shippingTag">—</span></span>
-              <span class="amount" id="shippingAmt">জেলা বেছে নিন</span>
+              <span id="shippingAmt">জেলা বেছে নিন</span>
             </div>
             <div class="totals-row total-final">
               <span>সর্বমোট</span>
-<!-- Quantity counter -->
-              <span class="amount" id="totalAmt">৳ ৪২০</span>
+              <span id="totalAmt">৳ ৩৫০</span>
             </div>
           </div>
-          <button class="place-order-btn" id="placeOrderBtn" onclick="placeOrder()">
-            অর্ডার করুন — ক্যাশ অন ডেলিভারি
-            <div class="btn-spinner"></div>
-          </button>
+
+          <button class="place-order-btn" id="placeOrderBtn" onclick="placeOrder()">অর্ডার কনফার্ম করুন</button>
         </div>
       </div>
     </div>
   </div>
+
   <input type="text" name="company" id="company" style="display:none">
 
   <footer>
-    <div class="footer-brand">এগ্রি <em>মাস্টার</em></div>
-    <div class="footer-copy">© ২০২৫ কৃষিবিদ মো: ইমরান হোসেন<br>আদমজী ক্যান্টনমেন্ট কলেজ</div>
+    © ২০২৫ ড. শফিকুল ইসলাম। সর্বস্বত্ব সংরক্ষিত।
   </footer>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-    // Put yoFirebase Config here
-    const firebaseConfig = {
-      apiKey:            "YOUR_API_KEY",
-      authDomain:        "YOUR_PROJECT_ID.firebaseapp.com",
-      projectId:         "YOUR_PROJECT_ID",
-      storageBucket:     "YOUR_PROJECT_ID.appspot.com",
-      messagingSenderId: "YOUR_SENDER_ID",
-      appId:             "YOUR_APP_ID"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db  = getFirestore(app);
-    window._db = db;
-    window._addDoc = addDoc;
-    window._collection = collection;
-    window._serverTimestamp = serverTimestamp;
-  </script>
-
   <script>
+    // Added Javascript for mobile menu toggle
     const hamburger = document.getElementById('hamburger');
-    const drawer    = document.getElementById('navDrawer');
+    const drawer = document.getElementById('navDrawer');
     function closeDrawer() { hamburger.classList.remove('open'); drawer.classList.remove('open'); document.body.style.overflow = ''; }
     hamburger.addEventListener('click', () => { const isOpen = hamburger.classList.toggle('open'); drawer.classList.toggle('open', isOpen); document.body.style.overflow = isOpen ? 'hidden' : ''; });
-// UNIT PRICE HERE!!!! UNIT PRICE HERE!!!!
-    const DHAKA_INSIDE = ['ঢাকা'];
-    const UNIT_PRICE = 420;   // sale price per copy
+
+    // ==========================================
+    // ⚙️ PRICE CONFIGURATION (CHANGE VALUES HERE)
+    // ==========================================
+    const PRICE_PAPER_1 = 350;
+    const PRICE_PAPER_2 = 350;
+    const PRICE_BOTH = 650;
+
+    const DELIVERY_INSIDE_DHAKA = 60;
+    const DELIVERY_OUTSIDE_DHAKA = 110;
+    // ==========================================
+
+    let currentUnitPrice = PRICE_PAPER_1;
+    let currentBookName = "কেমিস্ট্রি মাস্টার ১ম পত্র";
     let shippingCost = 0;
     let qty = 1;
 
-    // ── Qty counter
+    const radioButtons = document.querySelectorAll('input[name="book_choice"]');
+    radioButtons.forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        if (e.target.value === 'paper1') {
+          currentUnitPrice = PRICE_PAPER_1;
+          currentBookName = "কেমিস্ট্রি মাস্টার ১ম পত্র";
+        } else if (e.target.value === 'paper2') {
+          currentUnitPrice = PRICE_PAPER_2;
+          currentBookName = "কেমিস্ট্রি মাস্টার ২য় পত্র";
+        } else if (e.target.value === 'both') {
+          currentUnitPrice = PRICE_BOTH;
+          currentBookName = "১ম ও ২য় পত্র (একত্রে)";
+        }
+
+        document.getElementById('displayBookName').textContent = currentBookName;
+        document.getElementById('displayUnitPrice').textContent = '৳ ' + toBanglaNum(currentUnitPrice);
+        recalc();
+      });
+    });
+
     function changeQty(delta) {
       qty = Math.max(1, Math.min(20, qty + delta));
       document.getElementById('qtyDisplay').textContent = toBanglaNum(qty);
       document.getElementById('qtyMinus').disabled = (qty <= 1);
-      // update line total in table
-      document.getElementById('lineTotalCell').textContent = '৳ ' + toBanglaNum(UNIT_PRICE * qty);
-      // update note
-      document.getElementById('qtyNote').textContent = '(' + toBanglaNum(qty) + ' কপি)';
       recalc();
     }
 
-    // ── Bangla numerals
     function toBanglaNum(n) {
       return String(n).replace(/[0-9]/g, d => '০১২৩৪৫৬৭৮৯'[d]);
     }
 
-    // ── Recalculate all totals
     function recalc() {
-      const subtotal = UNIT_PRICE * qty;
+      const subtotal = currentUnitPrice * qty;
       document.getElementById('subtotalAmt').textContent = '৳ ' + toBanglaNum(subtotal);
       const grand = subtotal + shippingCost;
       document.getElementById('totalAmt').textContent = '৳ ' + toBanglaNum(grand);
     }
 
-    // ── Shipping on district change
     document.getElementById('district').addEventListener('change', function() {
       const dist = this.value;
-      // const courierGroup = document.getElementById('courierGroup');
       if (!dist) {
         shippingCost = 0;
         document.getElementById('shippingTag').textContent = '—';
         document.getElementById('shippingAmt').textContent = 'জেলা বেছে নিন';
-        // courierGroup.style.display = 'none';
-        // document.getElementById('courierService').value = '';
-        recalc();
-        return;
-      }
-      if (DHAKA_INSIDE.includes(dist)) {
-        shippingCost = 60;
+      } else if (dist === 'ঢাকা') {
+        shippingCost = DELIVERY_INSIDE_DHAKA;
         document.getElementById('shippingTag').textContent = 'ঢাকার ভেতরে';
-        document.getElementById('shippingAmt').textContent = '৳ ' + toBanglaNum(60);
-        courierGroup.style.display = 'none';
-        document.getElementById('courierService').value = '';
+        document.getElementById('shippingAmt').textContent = '৳ ' + toBanglaNum(shippingCost);
       } else {
-        shippingCost = 100;
+        shippingCost = DELIVERY_OUTSIDE_DHAKA;
         document.getElementById('shippingTag').textContent = 'ঢাকার বাইরে';
-        document.getElementById('shippingAmt').textContent = '৳ ' + toBanglaNum(100);
-        // courierGroup.style.display = '';
+        document.getElementById('shippingAmt').textContent = '৳ ' + toBanglaNum(shippingCost);
       }
       recalc();
     });
-
-    // ── Expose changeQty globally
-    window.changeQty = changeQty;
-
-    // ── Init disabled state
-    document.getElementById('qtyMinus').disabled = true;
 
     function validate() {
       const fields = [
@@ -515,121 +376,61 @@
       return valid;
     }
 
-    ['fullName','phone','address','district'].forEach(id => {
-      document.getElementById(id).addEventListener('input', function() { this.classList.remove('error'); const err = document.getElementById(id+'-error'); if(err) err.classList.remove('show'); });
-    });
+    async function placeOrder() {
+      const honeypot = document.getElementById("company").value;
+      if (honeypot !== "") return;
 
-    function genOrderId() { return 'AM-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substr(2,4).toUpperCase(); }
+      if (!validate()) {
+        alert("দয়া করে ফর্মের লাল চিহ্নিত তথ্যগুলো সঠিকভাবে পূরণ করুন।");
+        return;
+      }
 
+      const btn = document.getElementById('placeOrderBtn');
+      btn.innerText = "প্রসেসিং...";
+      btn.disabled = true;
 
-async function placeOrder() {
+      const orderId = 'CM-' + Date.now().toString(36).toUpperCase();
+      const subtotal = currentUnitPrice * qty;
 
-  const honeypot = document.getElementById("company").value;
+      const orderData = {
+        orderId: orderId,
+        product: currentBookName,
+        unitPrice: currentUnitPrice,
+        quantity: qty,
+        subtotal: subtotal,
+        shipping: shippingCost,
+        total: subtotal + shippingCost,
 
-  if (honeypot !== "") {
-    return;
-  }
+        customer: {
+          name: document.getElementById('fullName').value.trim(),
+          phone: document.getElementById('phone').value.trim(),
+          address: document.getElementById('address').value.trim(),
+          district: document.getElementById('district').value,
+          upazila: document.getElementById('upazila').value.trim(),
+        },
+        paymentMethod: 'ক্যাশ অন ডেলিভারি',
+        createdAt: new Date().toISOString(),
+      };
 
-  if (!validate()) {
-    document.querySelector('.billing-card')
-      .scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    return;
-  }
+      try {
+        const response = await fetch("/api/telegram", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(orderData)
+        });
 
-  const btn = document.getElementById('placeOrderBtn');
+        if (!response.ok) throw new Error("Failed to send order");
 
-  btn.classList.add('loading');
-  btn.disabled = true;
+        localStorage.setItem("lastOrder", JSON.stringify(orderData));
+        window.location.href = "order-complete.html";
 
-  const orderId = genOrderId();
-  const district = document.getElementById('district').value;
-  const subtotal = UNIT_PRICE * qty;
-
-  const orderData = {
-    orderId,
-
-    product: 'এগ্রি মাস্টার',
-    unitPrice: UNIT_PRICE,
-
-    quantity: qty,
-
-    subtotal: subtotal,
-
-    shipping: shippingCost,
-
-    total: subtotal + shippingCost,
-
-    customer: {
-      name: document.getElementById('fullName').value.trim(),
-
-      phone: document.getElementById('phone').value.trim(),
-
-      address: document.getElementById('address').value.trim(),
-
-      district: district,
-
-      upazila: document.getElementById('upazila').value.trim(),
-
-      // FIXED
-      courier: 'প্রযোজ্য নয়',
-
-      notes: document.getElementById('notes').value.trim(),
-    },
-
-    paymentMethod: 'ক্যাশ অন ডেলিভারি',
-
-    status: 'pending',
-
-    createdAt: new Date().toISOString(),
-  };
-
-  try {
-
-    console.log("Sending order:", orderData);
-
-    const response = await fetch("/api/telegram", {
-      method: "POST",
-
-      headers: {
-        "Content-Type": "application/json"
-      },
-
-      body: JSON.stringify(orderData)
-    });
-
-    const result = await response.json();
-
-    console.log("Server response:", result);
-
-    if (!response.ok) {
-      throw new Error(result.error || "Failed to send order");
+      } catch (err) {
+        console.error("ORDER ERROR:", err);
+        alert("অর্ডার পাঠানো যায়নি। আপনার ইন্টারনেট সংযোগ চেক করে আবার চেষ্টা করুন।");
+        btn.innerText = "অর্ডার কনফার্ম করুন";
+        btn.disabled = false;
+      }
     }
-
-    // Save order locally
-    localStorage.setItem(
-      "lastOrder",
-      JSON.stringify(orderData)
-    );
-
-    // Redirect
-    window.location.href = "order-complete.html";
-
-  } catch (err) {
-
-    console.error("ORDER ERROR:", err);
-
-    alert("অর্ডার পাঠানো যায়নি। আবার চেষ্টা করুন।");
-
-    btn.classList.remove('loading');
-
-    btn.disabled = false;
-  }
-}
-
-window.placeOrder = placeOrder;
   </script>
 </body>
 </html>
